@@ -3,7 +3,7 @@
   "version": 1,
   "newProjectRoot": "projects",
   "projects": {
-    "twitterWeb3": {
+    "twitter-web3": {
       "projectType": "application",
       "schematics": {
         "@schematics/angular:component": {
@@ -65,10 +65,10 @@
           "builder": "@angular-devkit/build-angular:dev-server",
           "configurations": {
             "production": {
-              "browserTarget": "twitterWeb3:build:production"
+              "browserTarget": "twitter-web3:build:production"
             },
             "development": {
-              "browserTarget": "twitterWeb3:build:development"
+              "browserTarget": "twitter-web3:build:development"
             }
           },
           "defaultConfiguration": "development"
@@ -76,7 +76,7 @@
         "extract-i18n": {
           "builder": "@angular-devkit/build-angular:extract-i18n",
           "options": {
-            "browserTarget": "twitterWeb3:build"
+            "browserTarget": "twitter-web3:build"
           }
         },
         "test": {
