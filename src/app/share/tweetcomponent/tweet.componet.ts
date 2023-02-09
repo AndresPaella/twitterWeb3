@@ -11,7 +11,7 @@ export class TweetComponent {
   @Input()
   public content: any = null;
 
-  public name = "John Doe";
+  public name = "Andy McAllow";
 
   constructor() { }
 
