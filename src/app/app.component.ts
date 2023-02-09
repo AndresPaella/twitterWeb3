@@ -11,17 +11,4 @@ export class AppComponent {
 
   public tweets: Tweet[] =[];
 
-  public constructor() {
-    let tweet = new Tweet(new Date(), "Hello World", "Andy McAllow", 0, [], [], []);
-    this.tweets.push(tweet);
-    tweet = new Tweet(new Date(), "This is the second tweet", "Andy McAllow", 0, [], [], []);
-    this.tweets.push(tweet);
-    tweet = new Tweet(new Date(), "This is the third tweet", "Andy McAllow", 0, [], [], []);
-    this.tweets.push(tweet);
-    tweet = new Tweet(new Date(), "This is the fourth tweet", "Andy McAllow", 0, [], [], []);
-    this.tweets.push(tweet);
-
-  }
-
-
 }
