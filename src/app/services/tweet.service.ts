@@ -1,12 +1,15 @@
 import { Injectable } from '@angular/core';
+import { Subject } from 'rxjs';
 import { Tweet } from '../share/model/tweet';
 
 @Injectable({
   providedIn: 'root'
 })
-export class TweetService {
+export class TweetService  {
 
+  public newTweets$ = new Subject(); 
   protected  tweets: Tweet[] =[];
+
   constructor() {
     let tweet = new Tweet(new Date(), "Hello World", "Andy McAllow");
     this.tweets.push(tweet);
@@ -28,6 +31,7 @@ export class TweetService {
 
   public publishTweet(tweet: Tweet) {
     this.tweets.unshift(tweet);
+    this.newTweets$.next(true);
   }
 
 }
