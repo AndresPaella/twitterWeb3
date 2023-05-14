@@ -1,7 +1,7 @@
-import { Component, OnDestroy } from '@angular/core';
-import { Subscription } from 'rxjs';
-import { TweetService } from '../services/tweet.service';
+import {Component, OnDestroy} from '@angular/core';
 import {Tweet} from "../share/model/tweet";
+import {TweetService} from "../share/tweetservice/tweet.service";
+import {Subscription} from "rxjs";
 
 @Component({
   selector: 'app-main-feed',
@@ -10,16 +10,27 @@ import {Tweet} from "../share/model/tweet";
 })
 export class MainFeedComponent implements OnDestroy {
 
-  protected  subscriptions: Subscription[] =[];
   public tweets: Tweet[] =[];
+  public subscriptions: Subscription[] = new Array<Subscription>();
 
-  public constructor(private tweetService: TweetService) {
-    this.tweets = this.tweetService.getTweets();
+  public subscription: Subscription = new Subscription();
 
-    this.subscriptions.push(this.tweetService.newTweets$.subscribe(()=>this.tweets = this.tweetService.getTweets()))
+  public constructor(public tweetService: TweetService) {
+
+    this.tweetService.getTweets().then((tweets: Tweet[]) => {
+        this.tweets = tweets;
+    });
+
+    this.subscription = this.tweetService.newTweets$.subscribe(async () => {
+      this.tweets = await this.tweetService.getTweets();
+    });
+
   }
 
-  public ngOnDestroy(): void {
-    this.subscriptions.forEach(s=>s.unsubscribe)
+  public ngOnDestroy() {
+    //this.subscriptions.forEach(subscription => { subscription.unsubscribe(); });
+    this.subscription.unsubscribe();
   }
+
+
 }

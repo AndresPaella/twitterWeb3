@@ -1,0 +1,96 @@
+/* Estilos para el diálogo modal */
+.modal-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background-color: #007bff;
+    color: #fff;
+    border-top-left-radius: 0.3rem;
+    border-top-right-radius: 0.3rem;
+    padding: 1rem;
+  }
+  
+  .modal-title {
+    font-size: 1.25rem;
+    margin: 0;
+  }
+  
+  .close {
+    color: #fff;
+    opacity: 0.8;
+    font-size: 1.5rem;
+  }
+  
+  .close:hover {
+    color: #fff;
+    opacity: 1;
+    text-decoration: none;
+  }
+  
+  .modal-body {
+    padding: 1rem;
+  }
+  
+  .form-group {
+    margin-bottom: 1rem;
+  }
+  
+  .form-group label {
+    display: block;
+    font-weight: bold;
+    margin-bottom: 0.5rem;
+  }
+  
+  .form-group input[type="text"],
+  .form-group textarea {
+    width: 100%;
+    padding: 0.5rem;
+    border: 1px solid #ced4da;
+    border-radius: 0.25rem;
+  }
+  
+  .form-group textarea {
+    resize: vertical;
+  }
+  
+  .form-group input[type="file"] {
+    display: none;
+  }
+  
+  .form-group label[for="avatar"] {
+    cursor: pointer;
+    color: #007bff;
+    text-decoration: underline;
+  }
+  
+  .form-group label[for="avatar"]:hover {
+    color: #0056b3;
+  }
+  
+  .form-group .preview-image {
+    margin-top: 1rem;
+  }
+  
+  .modal-footer {
+    display: flex;
+    justify-content: flex-end;
+    background-color: #f7f7f7;
+    border-bottom-left-radius: 0.3rem;
+    border-bottom-right-radius: 0.3rem;
+    padding: 1rem;
+  }
+  
+  .save-profile-button {
+    background-color: #007bff;
+    color: #fff;
+    border: none;
+    border-radius: 0.25rem;
+    padding: 0.5rem 1rem;
+    cursor: pointer;
+    transition: background-color 0.2s;
+  }
+  
+  .save-profile-button:hover {
+    background-color: #0069d9;
+  }
+  

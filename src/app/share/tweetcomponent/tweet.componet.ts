@@ -9,9 +9,7 @@ import {Tweet} from "../model/tweet";
 export class TweetComponent {
 
   @Input()
-  public content: any = null;
-
-  public name = "Andy McAllow";
+  public tweet: Tweet | null = null;
 
   constructor() { }
 

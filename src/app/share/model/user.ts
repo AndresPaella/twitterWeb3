@@ -1,31 +1,55 @@
-import { Tweet } from "./tweet";
+import {Tweet} from "./tweet";
 
 
 export class User {
-    protected _id: string;
-    set id(value:any) {
-      this._id=value;
-    }
+
     protected _name: string;
-    set name(value:any) {
-      this._id=value;
+
+    set name(value: any) {
+        this._name = value;
     }
-    protected _picture: string;
-    set picture(value:any) {
-      this._id=value;
+
+    get name(): any {
+        return this._name;
     }
-    protected tweets: Tweet[];
-    protected followers: User[];
-    protected following: User[];
-  
-    constructor(id: string, name: string, picture: string) {
-      this._id = id;
-      this._name = name;
-      this._picture = picture;
-      this.tweets = [];
-      this.followers =  [];
-      this.following =  [];
+
+    protected _avatar: string;
+
+    set avatar(value: any) {
+        this._avatar = value;
     }
-  
-  }
-  
+
+    get avatar(): any {
+        return this._avatar;
+    }
+
+    protected _bio: string;
+
+    set bio(value: any) {
+        this._bio = value;
+    }
+
+    get bio(): any {
+        return this._bio;
+    }
+
+    protected _address: string|null = null;
+
+    set address(value: any) {
+        this._address = value;
+    }
+
+    get address(): any {
+        return this._address;
+    }
+
+    public avatarBuffer: any = null;
+
+    public constructor(name: string, bio: string, avatar: string) {
+        this._name = name;
+        this._bio = bio;
+        this._avatar = avatar;
+    }
+
+
+}

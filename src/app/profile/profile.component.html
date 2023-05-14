@@ -1,1 +1,22 @@
-<p>profile works!</p>
+  
+<div class="profile-container">
+<div class="profile-header">
+    <div class="profile-header-background"></div>
+    <div class="profile-header-details">
+    <img class="profile-image" [src]="user?.avatar" alt="Profile image" />
+    <h2 class="profile-name">{{user?.name}}</h2>
+    <p class="profile-handle">@{{user?.name}}</p>
+    <p class="profile-bio">{{user?.bio}}</p>
+    <button class="edit-profile-button" (click)="openDialog()">Editar perfil</button>
+    </div>
+</div>
+<div class="profile-body">
+    <div class="profile-nav">
+    <a class="nav-item active">Tweets</a>
+    <a class="nav-item">Tweets y respuestas</a>
+    <a class="nav-item">Medios</a>
+    <a class="nav-item">Me gusta</a>
+</div>
+<tweet [tweet]="item" *ngFor="let item of tweets"></tweet>
+</div>
+

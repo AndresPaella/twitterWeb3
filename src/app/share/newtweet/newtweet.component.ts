@@ -1,34 +1,71 @@
-import {Component, Input} from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { TweetService } from 'src/app/services/tweet.service';
-import { Tweet } from '../model/tweet';
-import { User } from '../model/user';
+import {Component, ElementRef, ViewChild} from "@angular/core";
+import {FormBuilder, FormGroup, Validators} from "@angular/forms";
+import {TweetService} from "../tweetservice/tweet.service";
+import {Tweet} from "../model/tweet";
+import {UserService} from "../tweetservice/user.service";
+import {User} from "../model/user";
+
+declare let window: any;
 
 @Component({
-  selector: 'newtweet',
-  templateUrl: './newtweet.component.html',
-  styleUrls: ['./newtweet.component.scss']
+    selector: 'newtweet',
+    templateUrl: 'newtweet.component.html',
+    styleUrls: ['newtweet.component.scss']
 })
 export class NewTweetComponent {
+
     public form: FormGroup;
 
-    public constructor (
+    public image: any = null;
+
+    public userInSession: any;
+
+    @ViewChild('fileInput') fileInput!: ElementRef;
+
+    public constructor(
         public formBuilder: FormBuilder,
+        public userService: UserService,
         public tweetService: TweetService
     ) {
-        this.form = this.formBuilder.group({
-            tweetcontent:[null, [Validators.max(140)]]
 
-        })   
+        this.userInSession = this.userService.anonymousUser;
+
+        this.userService.userInSessionChanged$.subscribe(userInSession => {
+            this.userInSession = userInSession;
+        })
+
+        this.form = this.formBuilder.group({
+            tweetcontent: [null, [
+                Validators.max(140)]]
+        });
 
     }
 
     public submit() {
         if(this.form.valid) {
-            let user = new User('andy', 'Andy McAllow', 'https://pbs.twimg.com/profile_images/1481281375835725825/rZzCEFm3_400x400.jpg')
             let tweetcontent = this.form.get('tweetcontent')?.value;
-            let tweet = new Tweet(new Date(), tweetcontent, user.name );
-            this.tweetService.publishTweet(tweet);
+            let tweet = new Tweet();
+            tweet.message = tweetcontent;
+            if(this.image != null) {
+                const reader = new window.FileReader();
+                reader.readAsArrayBuffer(this.image);
+                reader.onloadend = () => {
+                    window.Buffer = require('buffer/').Buffer;
+                    tweet.imageBuffer = window.Buffer(reader.result);
+                    this.tweetService.publishTweet(tweet);
+                }
+            }
+            else {
+                this.tweetService.publishTweet(tweet);
+            }
+            this.form.reset();
         }
     }
+
+    public onFileSelected(event: any) {
+
+        this.image = event.target.files[0];
+
+    }
+
 }
